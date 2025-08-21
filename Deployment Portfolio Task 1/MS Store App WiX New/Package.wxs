@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Define the variables in "$(var.*) expressions" -->
+<?define Name = "Folder Zipper" ?>
+<?define Manufacturer = "Jaime Shirazi" ?>
+<?define Version = "1.0.0.0" ?>
+<?define UpgradeCode = "7F2896BF-DA30-4DF6-BF98-2785E347A81F" ?>
+
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Package Name="$(Name)"
+			   Manufacturer="$(Manufacturer)"
+			   Version="$(Version)"
+			   UpgradeCode="$(var.UpgradeCode)"
+			   Compressed="true">
+		
+	<!-- Allow upgrades and prevent downgrades -->
+	<MajorUpgrade DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
+
+		<!-- Define the directory structure -->
+		<StandardDirectory Id="ProgramFilesFolder">
+			<!-- Create a folder inside program files -->
+			<Directory Id="ROOTDIRECTORY" Name="$(var.Manufacturer)">
+				<!-- Create a folder within the parent folder given the name -->
+				<Directory Id="INSTALLFOLDER" Name="$(Name)" />
+			</Directory>
+		</StandardDirectory>
+
+		<Feature Id="Main">
+			<!-- Installs everything from HarvestedComponents -->
+
+			<ComponentGroupRef Id="HarvestedComponents" />
+			
+		</Feature>
+	</Package>
+</Wix>

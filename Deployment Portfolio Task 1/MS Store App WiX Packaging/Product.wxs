@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="MS_Store_App_WiX_Packaging" Language="1033" Version="1.0.0.0" Manufacturer="Jaime Shirazi" UpgradeCode="3ae32a34-6e33-4727-82bf-456447973c62">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="MS_Store_App_WiX_Packaging" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Folder Zipper" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="MSStoreApp.exe" Guid="91259ED5-4997-4B3F-BF2A-A4127BF2410A">
+				<File Id="MSStoreApp.exe" Name="MS Store App.exe" Source="$(var.MSStoreApp.TargetDir)MS Store App.exe"></File>
+				<File Id="MSStoreApp.dll" Name="MS Store App.dll" Source="$(var.MSStoreApp.TargetDir)MS Store App.dll"></File>
+				<File Id="MSStoreAppSecurity.dll" Name="MS Store App Security.dll" Source="$(var.MSStoreApp.TargetDir)MS Store App Security.dll"></File>
+				<File Id="ICSharpCode.SharpZipLib.dll" Name="ICSharpCode.SharpZipLib.dll" Source="$(var.MSStoreApp.TargetDir)ICSharpCode.SharpZipLib.dll"></File>
+			</Component>
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+	</Fragment>
+</Wix>
