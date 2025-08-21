@@ -13,4 +13,8 @@
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MS Store App Security\MS Store App Security.csproj" />
+  </ItemGroup>
+
 </Project>
